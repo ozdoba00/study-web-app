@@ -14,4 +14,13 @@ class Post extends Model
         'visibility'
     ];
     public $timestamps = true;
+
+    public function comments(){
+
+        return $this->hasMany('App\Models\Comment');
+    }
+
+
+
 }
+

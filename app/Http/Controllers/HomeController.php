@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Post;
 
 class HomeController extends Controller
 {
@@ -25,7 +27,16 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $posts = Post::all();
 
-        return view('home', ['user'=>$user]);
+
+        foreach ($posts as $key=>$value) {
+            $user = User::find($value->user_id);
+            $posts[$key]['user_name'] = $user->name;
+            $posts[$key]['user_last_name'] = $user->last_name;
+        }
+
+
+        return view('home', ['user'=>$user, 'posts'=>$posts->reverse()]);
     }
 }

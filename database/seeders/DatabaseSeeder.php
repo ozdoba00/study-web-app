@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\PostTableSeeder;
-
+use Database\Seeders\CommentTableSeeder;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            PostTableSeeder::class
+            PostTableSeeder::class,
+            CommentTableSeeder::class
         ]);
     }
 }

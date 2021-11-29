@@ -17,3 +17,17 @@ margin-left: auto;
 .user-data{
     font-weight: bold;
 }
+
+
+.card p{
+    overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+
+.comment-button
+{
+    cursor: pointer;
+    color: #0D6EFD;
+    font-style: italic;
+}

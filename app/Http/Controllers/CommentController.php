@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Post;
-use App\Models\User;
+use App\Models\Comment;
 
-class PostController extends Controller
+class CommentController extends Controller
+
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post = new Post();
-        $posts = $post->all()->reverse();
-
-        return  response()->json($posts);
+        //
     }
 
     /**
@@ -40,23 +36,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-
-        $post = new Post();
-
-        $postContent = $request->input('postContent');
-        $user = Auth::user();
-        $userId = $user->id;
-        $visibility = 1; //na razie stala
-
-        // Add to database
-        $post->content =$postContent;
-        $post->user_id = $userId;
-        $post->visibility = $visibility;
-        $post->save();
-
-        return redirect('/');
-
-
+        //
     }
 
     /**
@@ -67,19 +47,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-
-        $post = Post::find($id);
-
-        $comments = $post->comments;
-        foreach ($comments as $key =>$value) {
-
-            $comments[$key]['user_name'] = User::find($value['user_id'])->name;
-            $comments[$key]['last_name'] = User::find($value['user_id'])->last_name;
-
-        }
-
-        return $comments;
-        // echo $post;
+        //
     }
 
     /**
