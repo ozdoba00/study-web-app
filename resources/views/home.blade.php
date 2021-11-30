@@ -21,11 +21,11 @@
                                 <p>IMG</p>
                             </div>
                             <input type="text" class="form-control" name='postContent'
-                                placeholder="What are you thinking about, {{$user->name}}?">
+                                placeholder="How are you, {{$user->name}}?">
+                                <input class="btn btn-primary me-md-2" type="submit" value="Add">
+
                         </div>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <input class="btn btn-primary me-md-2" type="submit" value="Add">
-                        </div>
+
                     </form>
                 </div>
             </div>
@@ -43,7 +43,7 @@
         <div class="card-body">
             <div class="d-flex">
                 <div class="flex-shrink-0">
-                    <img src="..." alt="...">
+                    {{-- <img src="..." alt="..."> --}}
                 </div>
                 <div class="flex-grow-1 ms-3">
                     <span class="user-data"><a href="#"> {{$post->user_name}} {{$post->user_last_name}}</a></span>
@@ -53,9 +53,20 @@
             <div class='d-flex'>
                 <p>{{$post->content}}</p>
             </div>
+            <form action="{{route('comment.store')}}" method="post" id="comment-form-{{$post->id}}">
+                @csrf
+                <div style="width:100%;"  class="input-group mb-3">
+                    <textarea style='max-height:50px;' class="form-control" id='comment_content-{{$post->id}}' name='comment_content' placeholder="What do you think about it, {{$user->name}}?" rows="3"></textarea>
+                    <button id="{{$post->id}}" class="add-comment btn btn-primary me-md-2">Add</button>
+                    <input type="hidden" name="post_id" value={{$post->id}}>
+                </div>
+
+            </form>
+
             <div id={{$post->id}} class="comment-button d-flex">
                 Show comments
             </div>
+
             <div id='list-{{$post->id}}' class="comments-list d-none">
             </div>
 
