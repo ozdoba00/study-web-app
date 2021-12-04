@@ -25,9 +25,11 @@ margin-left: auto;
 }
 
 
-.comment-button, .comments-load-button
+.comment-button, .comments-load-button, .comment-delete-button
 {
     cursor: pointer;
     color: #0D6EFD;
     font-style: italic;
 }
+
+

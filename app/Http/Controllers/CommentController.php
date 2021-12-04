@@ -15,7 +15,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+
+        return redirect('/');
     }
 
     /**
@@ -98,6 +99,9 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::find($id);
+        $user = Auth::user();
+        $comment->delete();
+        // return "test";
     }
 }

@@ -22,4 +22,4 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
 Route::resource('post', PostController::class);
 Route::resource('comment', CommentController::class);
-
+// Route::get('/comment/{id}/delete', 'CommentController@destroy');

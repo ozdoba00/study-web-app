@@ -19,6 +19,7 @@ $(document).ready(function () {
             $(this).text(
                 text == "Hide comments" ? "Show comments" : "Hide comments");
 
+                $('#list-' + postId).removeClass('loaded');
                 getComments(postId);
         }
 
@@ -40,35 +41,53 @@ $(document).ready(function () {
             }
         });
     });
+
+
+
 });
 
 
+$(document).on("click", ".comment-delete-button" , function() {
+
+
+    let comment_id = $(this).attr("id");
+
+    $.ajax({
+        type: "delete",
+        url: "comment/"+comment_id,
+        success: function (response) {
+            if($("#comment-card-"+comment_id).hasClass("comment-loaded"))
+                $("#comment-card-"+comment_id).remove();
+        },
+    });
+});
 function getComments(postId){
+
     $.ajax({
         type: "get",
         url: "post/" + postId,
         data: "data",
         success: function (response) {
 
-            // console.log(response);
-
-
 
             if (!$('#list-' + postId).hasClass('loaded')) {
 
                 response.forEach(element => {
 
-                   if(!$("#"+element.id).hasClass('comment-loaded')){
+                   if(!$("#comment-card-"+element.id).hasClass('comment-loaded')){
 
 
                     if (element.post_id == postId) {
-                        let html_comment = '<div id="'+element.id+'" class="card p-3 comment-loaded">' +
+                        let html_comment = '<div id="comment-card-'+element.id+'" class="card p-3 comment-loaded">' +
+
                             '<div class="d-flex justify-content-between align-items-center">' +
                             '<div class="user d-flex flex-row align-items-center">' +
                             '<img src="" width="30" class="user-img rounded-circle mr-2">' +
                             '<span><small id="user_data-' + element.id + '" class="font-weight-bold text-primary"></small><br>' +
-                            '<small id="comment_content-' + element.id + '" class="font-weight-bold"></small></span>' +
-                            '</div> <small></small>' +
+                            '<small id="comment_content-' + element.id + '" class="font-weight-bold"></small></span>';
+                            if(element.can_be_deleted)
+                                html_comment+= '</div><small id="'+element.id+'" class="comment-delete-button" >Delete</small>';
+                            html_comment +=
                             '</div>' +
                             '</div>';
 

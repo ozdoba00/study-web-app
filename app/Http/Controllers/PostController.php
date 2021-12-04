@@ -69,12 +69,19 @@ class PostController extends Controller
     {
 
         $post = Post::find($id);
+        $user = Auth::user();
 
         $comments = $post->comments;
         foreach ($comments as $key =>$value) {
 
             $comments[$key]['user_name'] = User::find($value['user_id'])->name;
             $comments[$key]['last_name'] = User::find($value['user_id'])->last_name;
+            if($user->id==$value['user_id']){
+                $comments[$key]['can_be_deleted'] = 1;
+            }else{
+                $comments[$key]['can_be_deleted'] = 0;
+
+            }
 
         }
 
