@@ -64,9 +64,9 @@
                         @else
 
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            <a id="navbarDropdown" class="nav-link" href="/profile" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
+                                <strong>{{ Auth::user()->name }}</strong>
                             </a>
 
                             <div class="" aria-labelledby="navbarDropdown">
