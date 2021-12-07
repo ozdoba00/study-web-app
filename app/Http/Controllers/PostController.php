@@ -77,6 +77,7 @@ class PostController extends Controller
 
             $comments[$key]['user_name'] = User::find($value['user_id'])->name;
             $comments[$key]['last_name'] = User::find($value['user_id'])->last_name;
+            $comments[$key]['avatar'] = User::find($value['user_id'])->avatar;
             if($user->id==$value['user_id']){
                 $comments[$key]['can_be_deleted'] = 1;
             }else{

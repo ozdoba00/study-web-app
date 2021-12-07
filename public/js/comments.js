@@ -82,7 +82,7 @@ function getComments(postId){
 
                             '<div class="d-flex justify-content-between align-items-center">' +
                             '<div class="user d-flex flex-row align-items-center">' +
-                            '<img src="" width="30" class="user-img rounded-circle mr-2">' +
+                            '<img src="/storage/images/'+element.avatar+'" width="30" class="user-img rounded-circle mr-2">' +
                             '<span><small id="user_data-' + element.id + '" class="font-weight-bold text-primary"></small><br>' +
                             '<small id="comment_content-' + element.id + '" class="font-weight-bold"></small></span>';
                             if(element.can_be_deleted)

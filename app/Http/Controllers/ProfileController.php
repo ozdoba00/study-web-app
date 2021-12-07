@@ -35,12 +35,11 @@ class ProfileController extends Controller
 
         $user = Auth::user();
 
-
-        $filename = $request->avatar_img->getClientOriginalName();
-        $request->avatar_img->storeAs('images',$filename,'public');
-            // dd($request);
+        if($request->avatar_img){
+            $filename = $request->avatar_img->getClientOriginalName();
+            $request->avatar_img->storeAs('images',$filename,'public');
             $user->avatar = $filename;
-
+        }
         $user->name = $firstName;
         $user->second_name = $secondName;
         $user->last_name = $lastName;
