@@ -17,9 +17,9 @@
                     <form action="/post" method="post" id="post-form">
                         @csrf
                         <div class="input-group mb-3">
-                            <div class="input-group-text">
-                                <p>IMG</p>
-                            </div>
+                            @if(Auth::user()->avatar)
+                        <img class="image rounded-circle" src="{{asset('/storage/images/'.Auth::user()->avatar)}}" alt="profile_image" style="width: 60px;height: 60px; padding: 10px; margin: 0px; ">
+                        @endif
                             <input type="text" class="form-control" name='postContent'
                                 placeholder="How are you, {{$user->name}}?">
                                 <input class="btn btn-primary me-md-2" type="submit" value="Add">
@@ -43,7 +43,7 @@
         <div class="card-body">
             <div class="d-flex">
                 <div class="flex-shrink-0">
-                    {{-- <img src="..." alt="..."> --}}
+
                 </div>
                 <div class="flex-grow-1 ms-3">
                     <span class="user-data"><a href="#"> {{$post->user_name}} {{$post->user_last_name}}</a></span>

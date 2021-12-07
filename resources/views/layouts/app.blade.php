@@ -63,7 +63,11 @@
                         @endif
                         @else
 
+                        @if(Auth::user()->avatar)
+                        <img class="image rounded-circle" src="{{asset('/storage/images/'.Auth::user()->avatar)}}" alt="profile_image" style="width: 50px;height: 50px; padding: 10px; margin: 0px; ">
+                        @endif
                         <li class="nav-item dropdown">
+
                             <a id="navbarDropdown" class="nav-link" href="/profile" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <strong>{{ Auth::user()->name }}</strong>

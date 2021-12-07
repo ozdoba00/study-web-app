@@ -52,6 +52,7 @@ class PostController extends Controller
         $post->content =$postContent;
         $post->user_id = $userId;
         $post->visibility = $visibility;
+        $post->likes = 0;
         $post->save();
 
         return redirect('/');
