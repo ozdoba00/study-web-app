@@ -21,6 +21,7 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
 Route::resource('post', PostController::class);
+Route::get('/post/{id}/remove', 'PostController@destroy');
 Route::resource('comment', CommentController::class);
 Route::resource('user', UserController::class);
 

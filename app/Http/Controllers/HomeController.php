@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $user = Auth::user();
+        $userMain = Auth::user();
         $posts = Post::all();
 
 
@@ -38,6 +38,6 @@ class HomeController extends Controller
         }
 
 
-        return view('home', ['user'=>$user, 'posts'=>$posts->reverse()]);
+        return view('home', ['user'=>$userMain, 'posts'=>$posts->reverse()]);
     }
 }

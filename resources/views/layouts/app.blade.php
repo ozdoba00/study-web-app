@@ -80,19 +80,11 @@
                               <li><a class="dropdown-item" href="/profile">Settings</a></li>
                             </ul>
                           </div>
-                        {{-- <li class="nav-item dropdown">
-
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="/profile" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-
-                            </a>
-
-                            <div class="" aria-labelledby="navbarDropdown">
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li> --}}
+                          <div class="" aria-labelledby="navbarDropdown">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                            document.getElementById('logout-form').submit();">

@@ -14,6 +14,10 @@
                     <span class="user-data"><a href="{{route('user.show', $post->user_id)}}"> {{$post->user_name}} {{$post->user_last_name}}</a></span>
                 </div>
             <p>{{$post->created_at}}</p>
+            @if (Auth::user()->id == $post->user_id)
+            <a href="{{url('/post', [$post->id, 'remove'])}}" class="post-delete-button" >Delete</a>
+            @endif
+
             </div>
             <div class='d-flex'>
                 <p>{{$post->content}}</p>

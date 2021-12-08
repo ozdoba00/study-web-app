@@ -32,4 +32,12 @@ margin-left: auto;
     font-style: italic;
 }
 
+.post-delete-button{
+
+    cursor: pointer;
+    color: #0D6EFD;
+    font-style: italic;
+    margin-left: 5px;
+}
+
 
