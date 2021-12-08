@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
 Route::resource('post', PostController::class);
 Route::resource('comment', CommentController::class);
+Route::resource('user', UserController::class);
 
 Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'index']);
 Route::get('/profile/reset-password', ['uses'=>"ProfileController@resetPassword", 'as'=>'profile.reset-password']);

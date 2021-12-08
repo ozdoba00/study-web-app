@@ -32,7 +32,7 @@ $(document).ready(function () {
         form_data = $("#comment-form-"+id).serialize()
         $.ajax({
             type: "post",
-            url: "comment",
+            url: "/comment",
             data: form_data,
             success: function (response) {
                 $("#comment_content-"+id).val("");
@@ -63,9 +63,10 @@ $(document).on("click", ".comment-delete-button" , function() {
 });
 function getComments(postId){
 
+
     $.ajax({
         type: "get",
-        url: "post/" + postId,
+        url: "/post/" + postId,
         data: "data",
         success: function (response) {
 

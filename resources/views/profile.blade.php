@@ -3,19 +3,12 @@
 
 
 
-@section('content')
+@section('profile')
 
 
-<div class="container">
-
-    <div class="row align-items-center">
-        <section class="col-3 left">
-
-        </section>
-        <section style="max-width: 50%;" class="col main">
             <div class="card">
                 <div class="card-body">
-                    <h3 style="text-align: center;">Profile config</h3>
+                    <h3 style="text-align: center;">Profile settings</h3>
                     <form action="{{route('profile.update-data')}}" method="POST" id="post-form" enctype="multipart/form-data">
                         {{ method_field('PUT') }}
                         @csrf
@@ -68,7 +61,6 @@
             </div>
 
 
-</div>
 
 
 @endsection

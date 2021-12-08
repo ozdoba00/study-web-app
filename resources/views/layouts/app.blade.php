@@ -13,6 +13,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/posts.js') }}" defer></script>
+    <script src="{{ asset('js/comments.js') }}" defer></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -66,11 +70,21 @@
                         @if(Auth::user()->avatar)
                         <img class="image rounded-circle" src="{{asset('/storage/images/'.Auth::user()->avatar)}}" alt="profile_image" style="width: 50px;height: 50px; padding: 10px; margin: 0px; ">
                         @endif
-                        <li class="nav-item dropdown">
 
-                            <a id="navbarDropdown" class="nav-link" href="/profile" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="" role="button"  data-bs-toggle="dropdown" aria-expanded="false">
                                 <strong>{{ Auth::user()->name }}</strong>
+                              </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              <li><a class="dropdown-item" href="/user/{{Auth::user()->id}}">Profile</a></li>
+                              <li><a class="dropdown-item" href="/profile">Settings</a></li>
+                            </ul>
+                          </div>
+                        {{-- <li class="nav-item dropdown">
+
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="/profile" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+
                             </a>
 
                             <div class="" aria-labelledby="navbarDropdown">
@@ -78,7 +92,7 @@
                                     @csrf
                                 </form>
                             </div>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                            document.getElementById('logout-form').submit();">
@@ -92,7 +106,25 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+            <div class="row align-items-center">
+                <section class="col-3 left">
+
+                </section>
+
+                <section class="col main">
+                    @yield('content')
+                    @yield('posts')
+                    @yield('profile')
+                </section>
+
+                <section class="col-3 chat">
+
+                </section>
+            </div>
+            </div>
+
+
         </main>
     </div>
 </body>

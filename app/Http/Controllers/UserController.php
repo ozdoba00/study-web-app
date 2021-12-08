@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Post;
 class UserController extends Controller
 {
     /**
@@ -45,7 +47,21 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return User::find($id);
+
+
+        $posts = User::find($id)->posts;
+        $loggedUser = Auth::user();
+
+        foreach ($posts as $key=>$value) {
+            $user = User::find($value->user_id);
+            $posts[$key]['user_name'] = $user->name;
+            $posts[$key]['user_last_name'] = $user->last_name;
+            $posts[$key]['avatar'] = User::find($value->user_id)->avatar;
+        }
+
+
+        return view('user-profile', ['user'=>$loggedUser ,'posts'=>$posts->reverse()]);
+        // return view('user-profile');
     }
 
     /**

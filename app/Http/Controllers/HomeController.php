@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        // $user = Auth::user();
         $posts = Post::all();
 
 
@@ -34,6 +34,7 @@ class HomeController extends Controller
             $user = User::find($value->user_id);
             $posts[$key]['user_name'] = $user->name;
             $posts[$key]['user_last_name'] = $user->last_name;
+            $posts[$key]['avatar'] = User::find($value->user_id)->avatar;
         }
 
 
