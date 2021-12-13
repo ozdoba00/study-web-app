@@ -26,9 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         $userMain = Auth::user();
         $posts = Post::all();
-
 
         foreach ($posts as $key=>$value) {
             $user = User::find($value->user_id);
@@ -37,7 +37,12 @@ class HomeController extends Controller
             $posts[$key]['avatar'] = User::find($value->user_id)->avatar;
         }
 
+        if(sizeof($posts)<1)
+            return view('home', ['user'=>$userMain, 'posts'=>$posts->reverse()]);
+        else
+        return view('home', ['user'=>$userMain, 'userProfile'=>$user, 'posts'=>$posts->reverse()]);
 
-        return view('home', ['user'=>$userMain, 'posts'=>$posts->reverse()]);
+
+
     }
 }

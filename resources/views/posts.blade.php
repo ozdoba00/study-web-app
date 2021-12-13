@@ -15,7 +15,11 @@
                 </div>
             <p>{{$post->created_at}}</p>
             @if (Auth::user()->id == $post->user_id)
+            <a href="{{route('post.edit', $post->id)}}" class="post-delete-button" >Edit</a>
+
             <a href="{{url('/post', [$post->id, 'remove'])}}" class="post-delete-button" >Delete</a>
+
+
             @endif
 
             </div>
@@ -26,7 +30,7 @@
                 @csrf
                 <div style="width:100%;"  class="input-group mb-3">
                     <textarea style='max-height:50px;' class="form-control" id='comment_content-{{$post->id}}' name='comment_content' placeholder="What do you think about it, {{$user->name}}?" rows="3"></textarea>
-                    <button id="{{$post->id}}" class="add-comment btn btn-primary me-md-2">Add</button>
+                    <button id="{{$post->id}}" class="add-comment btn btn-primary me-md-2">Comment</button>
                     <input type="hidden" name="post_id" value={{$post->id}}>
                 </div>
 

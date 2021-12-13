@@ -29,9 +29,13 @@ class ProfileController extends Controller
 
     public function update(Request $request){
 
+
         $firstName = $request->firstName;
         $secondName = $request->secondName;
         $lastName = $request->lastName;
+        $gender = $request->gender;
+        $birthDate = $request->birth;
+        $shortInfo = $request->short_info;
 
         $user = Auth::user();
 
@@ -43,6 +47,9 @@ class ProfileController extends Controller
         $user->name = $firstName;
         $user->second_name = $secondName;
         $user->last_name = $lastName;
+        $user->gender = $gender;
+        $user->birth_date = $birthDate;
+        $user->short_info = $shortInfo;
         $user->save();
 
         return redirect('/profile');

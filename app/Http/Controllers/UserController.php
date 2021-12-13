@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PhpParser\Node\Expr\Empty_;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -52,6 +53,16 @@ class UserController extends Controller
         $posts = User::find($id)->posts;
         $loggedUser = Auth::user();
 
+        $birthDate = $loggedUser->birth_date;
+        $birthDate =implode('-', array_reverse(explode("-", $birthDate)));
+
+        $loggedUser->birth_date = $birthDate;
+        if($loggedUser->id==$id){
+            $loggedUserProfile = true;
+        }else{
+            $loggedUserProfile = false;
+        }
+
         foreach ($posts as $key=>$value) {
             $user = User::find($value->user_id);
             $posts[$key]['user_name'] = $user->name;
@@ -60,7 +71,9 @@ class UserController extends Controller
         }
 
 
-        return view('user-profile', ['user'=>$loggedUser ,'posts'=>$posts->reverse()]);
+        // if($loggedUser->id==$user->id)
+            return view('user-profile', ['user'=>$loggedUser, 'isUsersLoggedProfile'=>$loggedUserProfile ,'posts'=>$posts->reverse()]);
+
         // return view('user-profile');
     }
 

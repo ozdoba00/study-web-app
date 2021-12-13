@@ -99,15 +99,19 @@
 
         <main class="py-4">
             <div class="container">
+                @yield('profile-info')
             <div class="row align-items-center">
                 <section class="col-3 left">
 
                 </section>
 
                 <section class="col main">
+                    @yield('user-profile')
                     @yield('content')
                     @yield('posts')
                     @yield('profile')
+                    @yield('post-edit')
+
                 </section>
 
                 <section class="col-3 chat">
