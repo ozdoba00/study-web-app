@@ -29,3 +29,6 @@ Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'index']
 Route::get('/profile/reset-password', ['uses'=>"ProfileController@resetPassword", 'as'=>'profile.reset-password']);
 Route::put('/profile/update-data', ['uses'=>"ProfileController@update", 'as'=>'profile.update-data']);
 
+Route::post('/like', [\App\Http\Controllers\LikeController::class, 'store']);
+Route::get('like', [\App\Http\Controllers\LikeController::class, 'index']);
+Route::post('/like/remove', 'LikeController@remove');

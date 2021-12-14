@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Like;
 class UserController extends Controller
 {
     /**
@@ -52,6 +53,8 @@ class UserController extends Controller
 
         $posts = User::find($id)->posts;
         $loggedUser = Auth::user();
+        $likes = Like::all();
+
 
         $birthDate = $loggedUser->birth_date;
         $birthDate =implode('-', array_reverse(explode("-", $birthDate)));
@@ -64,15 +67,22 @@ class UserController extends Controller
         }
 
         foreach ($posts as $key=>$value) {
+            foreach ($likes as $like) {
+                if(($like['post_id']==$posts[$key]['id'])&&($like['user_id']==Auth::user()->id)){
+                    $posts[$key]['liked'] = true;
+                }
+            }
             $user = User::find($value->user_id);
             $posts[$key]['user_name'] = $user->name;
             $posts[$key]['user_last_name'] = $user->last_name;
             $posts[$key]['avatar'] = User::find($value->user_id)->avatar;
         }
-
+        if(sizeof($posts)<1){
+            $user = User::find($id);
+        }
 
         // if($loggedUser->id==$user->id)
-            return view('user-profile', ['user'=>$loggedUser, 'isUsersLoggedProfile'=>$loggedUserProfile ,'posts'=>$posts->reverse()]);
+            return view('user-profile', ['user'=>$user, 'isUsersLoggedProfile'=>$loggedUserProfile ,'posts'=>$posts->reverse()]);
 
         // return view('user-profile');
     }

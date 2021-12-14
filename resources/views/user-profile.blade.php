@@ -9,7 +9,7 @@
                   <div class="profile-header-content">
 
                      <div class="profile-header-img">
-                        <img src="{{asset('/storage/images/'.Auth::user()->avatar)}}" alt="profile_image" >
+                        <img src="{{asset('/storage/images/'.$user->avatar)}}" alt="profile_image" >
 
                      </div>
 

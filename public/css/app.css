@@ -24,7 +24,15 @@ margin-left: auto;
    text-overflow: ellipsis;
 }
 
+.fa {
+    font-size: 50px;
+    cursor: pointer;
+    user-select: none;
+  }
 
+  .fa:hover {
+    color: #0D6EFD;
+  }
 .comment-button, .comments-load-button, .comment-delete-button
 {
     cursor: pointer;
